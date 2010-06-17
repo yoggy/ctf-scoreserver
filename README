@@ -1,0 +1,34 @@
+= description
+
+  Scoreserver Web Application for CTF(Capture The Flag)
+  http://github.com/yoggy/ctf-scoreserver
+
+= prerequire
+
+  $ sudo gem install sinatra activerecord json sqlite3-ruby
+
+= launch web application
+
+  $ ruby scoreserver.rb
+
+= how to access scoreboard
+
+  http://[host or ip address]:4567/
+
+= configuration
+
+  config.rb is created when scoreserver.rb is started.
+  Please change ADMIN_PASS_SHA1 value in config.rb.
+
+  ADMIN_PASS_SHA1 is SHA-1 hash value for administrator password 
+
+    ex. 
+     $ echo -p "administrator password" | sha1sum
+     37e705a57d5ef70aeee5237032e7dd6af5f01cb6
+
+  You must restart scoreserver.rb, if you rewrite config.rb.
+
+= how to access administrator site
+
+  http://[host or ip address]:4567/admin
+
