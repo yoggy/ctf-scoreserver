@@ -1,0 +1,31 @@
+<div id="contents">
+  <div id="menu">
+    <span id="menu_item"><a href="../challenge">challenges</a></span>
+    <span id="menu_item">ranking</span>
+    <span id="menu_item"><a href="../logout">logout</a></span>
+  </div>
+  <div id="status">
+    <span id="status_item">login : <%=h get_name%></span>
+    <span id="status_item"> score : <%=h get_score%></span>
+  </div>
+
+  <h2>ranking</h2>
+  <div id="table">
+    <table>
+      <tr>
+        <td>ranking</td>
+        <td>name</td>
+        <td>score</td>
+        <td>last answer time</td>
+      </tr>
+      <% @scores.each_with_index do |s, i| %>
+        <tr>
+          <td><%=h i + 1%></td>
+          <td><%=h s['name']%></td>
+          <td><%=h s['score']%></td>
+          <td><%=h s['last_answer_time']%></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<script type="text/javascript" src="/jquery.min.js"></script>
+<script type="text/javascript" src="/admin_main.js"></script>
+<div id="contents">
+  <div id="menu">
+    <span id="menu_item"><a href="logout">admin_logout</a></span>
+  </div>
+
+  <h2>challenges</h2>
+  <div id="table">
+    <table>
+      <tr>
+        <td>id</td>
+        <td>description</td>
+        <td>point</td>
+        <td>status</td>
+        <td>edit</td>
+        <td>delete</td>
+      </tr>
+      <% @challenges.each do |c| %>
+        <tr>
+          <td><%=c.id%></td>
+          <td><%=c.abstract%></td>
+          <td><%=c.point%></td>
+          <td><%=c.status%></td>
+          <td><a href="#" onclick="on_edit(<%=c.id%>);">edit</a></td>
+          <td><a href="#" onclick="on_delete(<%=c.id%>);">delete</a></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div id="editor">
+    <h2>edit</h2>
+    <form id="editor_form" method="post" action="save">
+      <table id="editor">
+        <tr>
+          <td width="10%">id</td>
+          <td><input id="edit_id" type="text" name="id" value="">(int value)</td>
+        </tr>
+        <tr>
+          <td>point</td>
+          <td><input id="edit_point" type="text" name="point" value=""></td>
+        </tr>
+        <tr>
+          <td>status</td>
+          <td>
+            <select id="edit_status" name="status">
+              <option id="edit_status_0" value="hide">hide</option>
+              <option id="edit_status_1" value="pending">pending</option>
+              <option id="edit_status_2" value="show">show</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>description</td>
+          <td><input id="edit_abstract" type="text" name="abstract" value="" size="80"></td>
+        </tr>
+        <tr>
+          <td>detail</td>
+          <td><textarea id="edit_detail" name="detail" rows="15" cols="80"></textarea></td>
+        </tr>
+        <tr>
+          <td>answer</td>
+          <td><input id="edit_answer" type="text" name="answer" value="" size="80"></td>
+        </tr>
+      </table> 
+      <div><input type="submit" name="submit" value="save"></div>
+    </form>
+    <form id="delete_form" method="post" action="delete">
+      <input id="delete_id" type="hidden" name="id" value=""></div>
+    </form>
+  </div>
+</div>

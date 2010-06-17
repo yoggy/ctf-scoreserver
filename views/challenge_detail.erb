@@ -1,0 +1,43 @@
+<div id="contents">
+  <div id="menu">
+    <span id="menu_item"><a href="../challenge">challenges</a></span>
+    <span id="menu_item"><a href="../ranking">ranking</a></span>
+    <span  id="menu_item"><a href="../logout">logout</a></span>
+  </div>
+  <div id="status">
+    <span id="status_item">login : <%=h get_name%></span>
+    <span id="status_item"> score : <%=h get_score%></span>
+  </div>
+
+  <h2>challenge <%=h @id%></h2>
+  <div id="table">
+    <table>
+      <tr>
+        <td>description</td>
+        <td><%=h @abstract%></td>
+      </tr>
+      <tr>
+        <td>point</td>
+        <td><%=h @point%></td>
+      </tr>
+      <tr>
+        <td>status</td>
+        <td><%=h @clear_status%></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><pre><%=h @detail%></pre></td>
+      </tr>
+      <tr>
+        <td>answer?</td>
+        <td>
+          <form method="post" action="../answer/<%=@id%>">
+            <input type="text" name="answer">
+            <input type="submit" name="submit" value="submit">
+          </form>
+        </td>
+      </tr>
+    </table>
+    <a href="../challenge">back</a>
+  </div>
+</div>

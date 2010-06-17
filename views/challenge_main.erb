@@ -1,0 +1,30 @@
+<div id="contents">
+  <div id="menu">
+    <span id="menu_item">challenges</span>
+    <span id="menu_item"><a href="ranking">ranking</a></span>
+    <span id="menu_item"><a href="logout">logout</a></span>
+  </div>
+  <div id="status">
+    <span id="status_item">login : <%=h get_name%></span>
+    <span id="status_item"> score : <%=h get_score%></span>
+  </div>
+  <h2>challenges</h2>
+  <div id="table">
+    <table>
+      <tr>
+        <td>id</td>
+        <td>description</td>
+        <td>point</td>
+        <td>status</td>
+      </tr>
+      <% @challenges.each do |c| %>
+        <tr>
+          <td><%=c['id']%></td>
+          <td><%=c['abstract']%></td>
+          <td><%=c['point']%></td>
+          <td><%=c['clear_status']%></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
