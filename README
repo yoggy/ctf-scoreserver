@@ -24,7 +24,7 @@
 
     ex. 
      $ echo -p "administrator password" | sha1sum
-     37e705a57d5ef70aeee5237032e7dd6af5f01cb6
+     208fccd4c9416a58a198b4bc6b0516275e468788
 
   You must restart scoreserver.rb, if you rewrite config.rb.
 
