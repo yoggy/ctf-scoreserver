@@ -9,23 +9,15 @@
     <span id="status_item"> score : <%=h get_score%></span>
   </div>
 
-  <h2>challenge <%=h @id%></h2>
+  <h2><%=h @abstract%></h2>
   <div id="table">
     <table>
-      <tr>
-        <td>description</td>
-        <td><%=h @abstract%></td>
-      </tr>
       <tr>
         <td>point</td>
         <td><%=h @point%></td>
       </tr>
       <tr>
-        <td>status</td>
-        <td><%=h @clear_status%></td>
-      </tr>
-      <tr>
-        <td></td>
+        <td>problem detail</td>
         <td><div id="detail"><%=@detail.gsub(/\n/, "<br>")%></div></td>
       </tr>
       <tr>
