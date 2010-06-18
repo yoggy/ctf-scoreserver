@@ -17,18 +17,13 @@ post '/signup2' do
   if name.nil? || email.nil? || password.nil? || name == "" || email == "" || password == ""
     redirect "/signup"
   else
-    # 無い場合のみ登録する
-    u = User.new
-
-    begin
+    if User.find_by_name(name).nil? && User.find_by_email(email).nil?
+      u = User.new
       u.name     = params['name']
       u.email    = params['email']
       u.password = Digest::SHA1.hexdigest(params['password'])
       u.save
-    rescue Exception => e
-      pp e
     end
-
     erb :signup2, :layout => false
   end
 end
