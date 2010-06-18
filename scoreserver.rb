@@ -88,7 +88,7 @@ post '/answer/:cid' do |cid|
       pp cid
       pp c
       @cid = cid
-      if params['answer'] == c.answer.chomp
+      if params['answer'].downcase == c.answer.chomp.downcase
         if Answer.find_by_challenge_id_and_user_id(cid, get_uid).nil?
           a = Answer.new
           a.challenge_id = cid
