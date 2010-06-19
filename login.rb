@@ -7,11 +7,15 @@ helpers do
     session.delete('uid')
   end
 
+  def is_login
+    !(session['uid'].nil? || session['uid'] == "" || User.find_by_id(session['uid']).nil?)
+  end
+
   def login_block
-    if session['uid'].nil? || session['uid'] == "" || User.find_by_id(session['uid']).nil?
-      redirect '/'
-    else
+    if is_login
       yield
+    else
+      redirect '/'
     end
   end
 

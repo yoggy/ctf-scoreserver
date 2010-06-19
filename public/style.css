@@ -130,3 +130,9 @@ span.mini_announcement_subject {
   font-size: 90%;
 }
 
+div#announcement_read_more {
+  margin-top: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  font-size: 90%;
+}

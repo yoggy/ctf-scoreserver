@@ -14,6 +14,7 @@ rescue Exception => e
 COOKIE_SECRET   = "#{Digest::SHA1.hexdigest(Time.now.to_s)}"
 ADMIN_PASS_SHA1 = "08a567fa1a826eeb981c6762a40576f14d724849" #ctfadmin
 STYLE_SHEET = "/style.css"
+HTML_TITLE = "scoreserver.rb CTF"
     EOS
     f.flush
   }
