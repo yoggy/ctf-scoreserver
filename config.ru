@@ -7,6 +7,8 @@ require 'tables'
 require 'signup'
 require 'login'
 require 'ranking'
+require 'announcements'
+
 require 'admin'
 
 require 'scoreserver'

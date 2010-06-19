@@ -3,6 +3,8 @@ require 'rubygems'
 require 'sinatra'
 require 'digest/sha1'
 
+SCORESERVER_VERSION = "0.0.2"
+
 begin
   require 'config.rb'
 rescue Exception => e
@@ -11,6 +13,7 @@ rescue Exception => e
     f.puts <<-"EOS"
 COOKIE_SECRET   = "#{Digest::SHA1.hexdigest(Time.now.to_s)}"
 ADMIN_PASS_SHA1 = "08a567fa1a826eeb981c6762a40576f14d724849" #ctfadmin
+STYLE_SHEET = "/style.css"
     EOS
     f.flush
   }
@@ -21,15 +24,15 @@ require 'tables'
 require 'signup'
 require 'login'
 require 'ranking'
+require 'announcements'
 require 'admin'
 
 require 'pp'
 
-SCORESERVER_VERSION = "0.0.1"
 
 use Rack::Session::Cookie,
   :expire_after => 3600,
-  :secret => COOKIE_SECRET  # cookieを暗号化するためのキーを適当に指定しておく
+  :secret => COOKIE_SECRET 
 
 helpers do
   include Rack::Utils
@@ -156,6 +159,9 @@ end
 #
 get '/?' do
   session_clear
+
+  limit = 5
+  @announcements = Announcement.find(:all, :conditions => ['show = ?', true], :order => "time DESC", :limit => limit)
 
   erb :index
 end

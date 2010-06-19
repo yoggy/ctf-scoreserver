@@ -68,6 +68,24 @@ class CreateAnswers < ActiveRecord::Migration
   end
 end
 
+class CreateAnnouncements < ActiveRecord::Migration
+  def self.up
+    create_table :announcements do |t|
+      
+      t.datetime :time
+      t.text     :subject
+      t.text     :html
+      t.boolean  :show
+
+      t.timestamps
+    end
+  end
+
+  def self.down
+    drop_table :announcements
+  end
+end
+
 ActiveRecord::Base.establish_connection(
   :adapter => 'sqlite3',
   :database => $db,
@@ -102,9 +120,13 @@ class Answer < ActiveRecord::Base
   belongs_to :challenge
 end
 
+class Announcement < ActiveRecord::Base
+end
+
 unless File.exist? $db
   CreateUsers.up
   CreateChallenges.up
   CreateAnswers.up
+  CreateAnnouncements.up
 end
 

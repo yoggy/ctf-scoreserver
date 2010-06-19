@@ -6,6 +6,7 @@ require 'digest/sha1'
 require 'config.rb'
 
 require 'json'
+require 'time'
 
 require 'pp'
 
@@ -94,11 +95,8 @@ post '/admin/save' do
   end
 end
 
-# 
 post '/admin/delete' do 
   admin_block do
-    content_type :json
-  
     begin
       c = Challenge.find(params['id'])
       c.delete
@@ -106,6 +104,65 @@ post '/admin/delete' do
       pp e
     end
     redirect 'main'
+  end
+end
+
+get '/admin/announcements' do
+  admin_block do
+    @announcements = Announcement.find(:all, :order => "time DESC")
+    erb :admin_announcements
+  end
+end
+
+post '/admin/load_announcement' do
+  admin_block do
+    content_type :json
+    begin
+      a = Announcement.find_by_id(params['id'], :first)
+    rescue Exception => e
+      pp e
+    end
+
+    if a != nil
+      j = {
+        :id      => a.id,
+        :time    => a.time.strftime("%Y-%m-%d %H:%M"),
+        :show    => a.show.to_s,
+        :subject => a.subject,
+        :html    => a.html,
+        :result  => true
+      }
+      JSON.unparse(j)
+    else
+      JSON.unparse({:result => false, :err_msg => "announce id=#{id} is not found.."})
+    end
+  end
+end
+
+post '/admin/save_announcement' do 
+  a = Announcement.find_by_id(params['id'])
+  a ||= Announcement.new
+
+  admin_block do
+    a.id      = params['id']
+    a.time    = Time.parse(params['time'])
+    a.show    = params['show']
+    a.subject = params['subject']
+    a.html    = params['html']
+    a.save
+    redirect 'announcements'
+  end
+end
+
+post '/admin/delete_announcement' do
+  admin_block do
+    begin
+      a = Announcement.find(params['id'])
+      a.delete
+    rescue Exception => e
+      pp e
+    end
+    redirect 'announcements'
   end
 end
 

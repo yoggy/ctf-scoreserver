@@ -47,9 +47,8 @@ post '/login' do
   u = User.find_by_email(email, :first)
   if u != nil
     if Digest::SHA1.hexdigest(password) == u.password
-      # ログイン処理
       session['uid'] = u.id
-      session['dummy'] = Digest::SHA1.hexdigest(Time.new.to_s) #ダミーで少し大きめのデータを入れておく
+      session['dummy'] = Digest::SHA1.hexdigest(Time.new.to_s)
       redirect './challenge'
     end
   end

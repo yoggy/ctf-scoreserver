@@ -10,4 +10,15 @@
   <div id="register">
     <a href="signup">sign up</a>
   </div>
+  <div class="mini_announcements">
+    <h2>announcements</h2>
+    <div class="mini_announcements_body">
+      <%@announcements.each do |a|%>
+        <div class="mini_announcement_entry">
+          <span class="mini_announcement_time"><%=h a.time.strftime("%Y-%m-%d %H:%M")%></span>
+          <span class="mini_announcement_subject"><%=h a.subject%></span>
+        </div>      
+      <%end%> 
+    </div>
+  </div>
 </div>

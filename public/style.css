@@ -82,3 +82,51 @@ td {
   padding:       0.3em 1em;
 }
 
+div.announce_entry {
+  margin: 2em;
+  padding: 1em;
+  background-color: #1d1d1d;
+}
+
+div.announce_title {
+  border-style: solid;
+  border-color: #4d4d4d;
+  border-width: 1px;
+  border-width: 0px 0px 1px 0px;
+  padding: 0.5em;
+}
+
+span.annouce_time {
+   font-size: 80%;
+}
+
+span.annouce_subject {
+  margin-left: 1em;
+  margin-right: 1em;
+  font-size: 120%;
+}
+
+div.announce_html {
+  margin: 1em;
+  padding: 1em;
+}
+
+div.mini_announcements {
+  margin-top: 3em;
+}
+
+div.mini_announcements_body {
+  margin-left:  2em;
+  margin-right: 2em;
+}
+
+span.mini_announcement_time {
+   font-size: 80%;
+}
+
+span.mini_announcement_subject {
+  margin-left: 1em;
+  margin-right: 1em;
+  font-size: 90%;
+}
+

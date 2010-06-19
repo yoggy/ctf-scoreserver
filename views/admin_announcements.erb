@@ -1,0 +1,70 @@
+<script type="text/javascript" src="/jquery.min.js"></script>
+<script type="text/javascript" src="/admin_main.js"></script>
+<div id="contents">
+  <div id="menu">
+    <span id="menu_item"><a href="main">edit_challenges</a></span>
+    <span id="menu_item">edit_announcements</span>
+    <span id="menu_item"><a href="logout">admin_logout</a></span>
+  </div>
+
+  <h2>announcements</h2>
+  <div id="table">
+    <table>
+      <tr>
+        <td>id</td>
+        <td>time</td>
+        <td>subject</td>
+        <td>show</td>
+        <td>edit</td>
+        <td>delete</td>
+      </tr>
+      <% @announcements.each do |a| %>
+        <tr>
+          <td><%=a.id%></td>
+          <td><%=a.time.strftime("%Y-%m-%d %H:%M")%></td>
+          <td><%=a.subject%></td>
+          <td><%=a.show%></td>
+          <td><a href="#" onclick="on_edit_announcement(<%=a.id%>);">edit</a></td>
+          <td><a href="#" onclick="on_delete_announcement(<%=a.id%>);">delete</a></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div id="editor">
+    <h2>edit</h2>
+    <form id="editor_form" method="post" action="save_announcement">
+      <table id="editor">
+        <tr>
+          <td width="10%">id</td>
+          <td><input id="edit_id" type="text" name="id" value="">(int value)</td>
+        </tr>
+        <tr>
+          <td>time</td>
+          <td><input id="edit_time" type="text" name="time" value="">(yyyy-mm-dd HH:MM)</td>
+        </tr>
+        <tr>
+          <td>show</td>
+          <td>
+            <select id="edit_show" name="show">
+              <option id="edit_show_0" value="false">false</option>
+              <option id="edit_show_1" value="true">true</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>subject</td>
+          <td><input id="edit_subject" type="text" name="subject" value="" size="80"></td>
+        </tr>
+        <tr>
+          <td>html</td>
+          <td><textarea id="edit_html" name="html" rows="15" cols="80"></textarea></td>
+        </tr>
+      </table> 
+      <div><input type="submit" name="submit" value="save"></div>
+    </form>
+    <form id="delete_form" method="post" action="delete_announcement">
+      <input id="delete_id" type="hidden" name="id" value=""></div>
+    </form>
+  </div>
+</div>

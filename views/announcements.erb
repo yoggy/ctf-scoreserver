@@ -1,0 +1,24 @@
+<div id="contents">
+  <div id="menu">
+    <span id="menu_item"><a href="challenge">challenges</a></span>
+    <span id="menu_item"><a href="ranking">ranking</a></span>
+    <span id="menu_item">announcements</span>
+    <span id="menu_item"><a href="logout">logout</a></span>
+  </div>
+  <div id="status">
+    <span id="status_item">login : <%=h get_name%></span>
+    <span id="status_item"> score : <%=h get_score%></span>
+  </div>
+
+  <h2>announcements</h2>
+  <% @announcements.each do |a| %>
+    <div class="announce_entry">
+      <div class="announce_title">
+        <span class="annouce_time"><%=h a.time.strftime("%Y-%m-%d %H:%M")%></span>
+        <span class="annouce_subject"><%=h a.subject%></span>
+      </div> 
+      <div class="announce_html"><%=a.html%></div>
+    </div> 
+  <% end %>
+  </div>
+</div>
