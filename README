@@ -3,7 +3,9 @@
   http://github.com/yoggy/ctf-scoreserver
 
 = prerequire
-  $ sudo gem install sinatra activerecord json sqlite3-ruby
+  $ sudo apt-get install ruby ruby-dev rubygems sqlite3 libsqlite3-dev build-essential git
+  $ sudo gem install activerecord --version "= 2.3.10"
+  $ sudo gem install sinatra json sqlite3-ruby
 
 = launch web application
   $ ruby scoreserver.rb
@@ -31,5 +33,9 @@
     $ git clone git://github.com/yoggy/ctf-scoreserver.git
 
   pull
+    $ mkdir ctf-scoreserver
+    $ cd ctf-scoreserver
+    $ git init
+    $ git remote add origin git://github.com/yoggy/ctf-scoreserver.git
     $ git pull origin master
 
