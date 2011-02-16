@@ -53,11 +53,11 @@ post '/login' do
     if Digest::SHA1.hexdigest(password) == u.password
       session['uid'] = u.id
       session['dummy'] = Digest::SHA1.hexdigest(Time.new.to_s)
-      redirect './challenge'
+      redirect '/challenge'
     end
   end
 
-  redirect './'
+  redirect '/'
 end
 
 get '/logout' do

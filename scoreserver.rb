@@ -75,11 +75,11 @@ helpers do
 end
 
 get '/answer' do 
-  redirect 'challenge'
+  redirect '/challenge'
 end
 
 get '/answer/*' do 
-  redirect '../challenge'
+  redirect '/challenge'
 end
 
 post '/answer/:cid' do |cid|
@@ -87,7 +87,7 @@ post '/answer/:cid' do |cid|
     c = Challenge.find(cid)
 
     if c == nil || c.status != "show" || params['answer'].nil?
-      redirect '../challenge'
+      redirect '/challenge'
     else
       pp cid
       pp c
@@ -113,7 +113,7 @@ get '/challenge/:cid' do |cid|
     c = Challenge.find_by_id(cid)
 
     if c == nil || c.status != "show"
-      redirect "../challenge"
+      redirect "/challenge"
     else
       @id       = c.id
       @point    = c.point

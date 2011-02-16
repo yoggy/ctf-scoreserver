@@ -37,6 +37,6 @@ pull
   $ mkdir ctf-scoreserver
   $ cd ctf-scoreserver
   $ git init
-  $ git remote add origin git://github.com/yoggy/ctf-scoreserver.git
+  $ git remote add origin git@github.com:yoggy/ctf-scoreserver.git
   $ git pull origin master
 

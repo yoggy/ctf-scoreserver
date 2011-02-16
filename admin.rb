@@ -91,7 +91,7 @@ post '/admin/save' do
     c.detail   = params['detail']
     c.answer   = params['answer']
     c.save
-    redirect 'main'
+    redirect '/admin/main'
   end
 end
 
@@ -103,7 +103,7 @@ post '/admin/delete' do
     rescue Exception => e
       pp e
     end
-    redirect 'main'
+    redirect '/admin/main'
   end
 end
 
@@ -150,7 +150,7 @@ post '/admin/save_announcement' do
     a.subject = params['subject']
     a.html    = params['html']
     a.save
-    redirect 'announcements'
+    redirect '/admin/announcements'
   end
 end
 
@@ -162,7 +162,7 @@ post '/admin/delete_announcement' do
     rescue Exception => e
       pp e
     end
-    redirect 'announcements'
+    redirect '/admin/announcements'
   end
 end
 

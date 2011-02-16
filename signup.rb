@@ -4,7 +4,7 @@ require 'digest/sha1'
 
 # signup
 get '/signup2' do
-  redirect "./signup"
+  redirect "/signup"
 end
 
 post '/signup2' do
