@@ -6,7 +6,7 @@ require 'digest/sha1'
 SCORESERVER_VERSION = "0.0.2"
 
 begin
-  require 'config.rb'
+  require_relative 'config.rb'
 rescue Exception => e
   # create default config.rb
   open('config.rb', "w+") {|f|
@@ -21,12 +21,12 @@ HTML_TITLE = "scoreserver.rb CTF"
   require 'config.rb'
 end
 
-require 'tables'
-require 'signup'
-require 'login'
-require 'ranking'
-require 'announcements'
-require 'admin'
+require_relative 'tables'
+require_relative 'signup'
+require_relative 'login'
+require_relative 'ranking'
+require_relative 'announcements'
+require_relative 'admin'
 
 require 'pp'
 
