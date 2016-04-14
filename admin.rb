@@ -1,9 +1,9 @@
 #!/usr/bin/ruby
-require 'rubygems'
+
 require 'sinatra'
 require 'digest/sha1'
 
-require 'config.rb'
+require_relative 'config.rb'
 
 require 'json'
 require 'time'
@@ -46,7 +46,7 @@ end
 
 get '/admin/main' do 
   admin_block do
-    @challenges = Challenge.find(:all)
+    @challenges = Challenge.all
     erb :admin_main
   end
 end
@@ -55,8 +55,9 @@ end
 post '/admin/load' do
   admin_block do
     content_type :json
+    id = params['id']
     begin
-      c = Challenge.find_by_id(params['id'], :first)
+      c = Challenge.where(id: params['id']).first
     rescue Exception => e
       pp e
     end
@@ -109,7 +110,7 @@ end
 
 get '/admin/announcements' do
   admin_block do
-    @announcements = Announcement.find(:all, :order => "time DESC")
+    @announcements = Announcement.order("time DESC")
     erb :admin_announcements
   end
 end
@@ -117,8 +118,9 @@ end
 post '/admin/load_announcement' do
   admin_block do
     content_type :json
+    id = params['id']
     begin
-      a = Announcement.find_by_id(params['id'], :first)
+      a = Announcement.where(id: id).first
     rescue Exception => e
       pp e
     end

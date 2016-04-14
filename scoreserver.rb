@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-require 'rubygems'
+
 require 'sinatra'
 require 'digest/sha1'
 
@@ -54,7 +54,7 @@ end
 #
 helpers do
   def get_score
-    u = User.find_by_id(get_uid)
+    u = User.find(get_uid)
     as = u.answers
     return 0 if as.nil?
 
@@ -67,7 +67,7 @@ helpers do
 
   def get_clear_status(cid)
     uid = session['uid']
-    a = Answer.find_by_user_id_and_challenge_id(uid, cid)
+    a = Answer.where(user_id: uid, challenge_id: cid).first
     return false unless a
 
     return true
@@ -110,7 +110,7 @@ end
 
 get '/challenge/:cid' do |cid|
   login_block do
-    c = Challenge.find_by_id(cid)
+    c = Challenge.find(cid)
 
     if c == nil || c.status != "show"
       redirect "/challenge"
@@ -128,7 +128,7 @@ end
 
 get '/challenge' do
   login_block do
-    cs = Challenge.find(:all, :order => 'id')
+    cs = Challenge.all.order('id')
 
     @challenges = []
     if cs
@@ -162,7 +162,7 @@ get '/?' do
   session_clear
 
   limit = 5
-  @announcements = Announcement.find(:all, :conditions => ['show = ?', true], :order => "time DESC", :limit => limit)
+  @announcements = Announcement.where(show: true).order("time DESC").limit(limit)
 
   erb :index
 end

@@ -1,36 +1,28 @@
 #!/usr/bin/ruby
-require 'rubygems'
 require 'active_record'
 
 $db = 'db.sqlite3'
 
 # DB
 class CreateUsers < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :users do |t|
-      
       t.text     :name
       t.text     :email
       t.string   :password
 
       t.timestamps
     end
-    
+
     add_index :users, :id
     add_index :users, :name
     add_index :users, :email
   end
-
-  def self.down
-    drop_table :users
-  end
-
 end
 
 class CreateChallenges < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :challenges do |t|
-      
       t.string   :status
       t.text     :abstract
       t.text     :detail
@@ -42,16 +34,11 @@ class CreateChallenges < ActiveRecord::Migration
 
     add_index :challenges, :id
   end
-
-  def self.down
-    drop_table :challenges
-  end
 end
 
 class CreateAnswers < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :answers do |t|
-      
       t.integer  :user_id
       t.integer  :challenge_id
       t.text     :answer
@@ -62,16 +49,11 @@ class CreateAnswers < ActiveRecord::Migration
     add_index :answers, :user_id
     add_index :answers, :challenge_id
   end
-
-  def self.down
-    drop_table :answers
-  end
 end
 
 class CreateAnnouncements < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :announcements do |t|
-      
       t.datetime :time
       t.text     :subject
       t.text     :html
@@ -79,10 +61,6 @@ class CreateAnnouncements < ActiveRecord::Migration
 
       t.timestamps
     end
-  end
-
-  def self.down
-    drop_table :announcements
   end
 end
 
@@ -123,10 +101,9 @@ end
 class Announcement < ActiveRecord::Base
 end
 
-unless File.exist? $db
-  CreateUsers.up
-  CreateChallenges.up
-  CreateAnswers.up
-  CreateAnnouncements.up
+if !File.exist?($db) || File.size($db) == 0
+  CreateUsers.new.change
+  CreateChallenges.new.change
+  CreateAnswers.new.change
+  CreateAnnouncements.new.change
 end
-
