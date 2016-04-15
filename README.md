@@ -44,18 +44,10 @@ How to access administrator site
 
 github
 ----
-clone (anonymous access)
+clone 
 
     $ git clone git://github.com/yoggy/ctf-scoreserver.git
 
-pull
-  
-    $ mkdir ctf-scoreserver
-    $ cd ctf-scoreserver
-    $ git init
-    $ git remote add origin git@github.com:yoggy/ctf-scoreserver.git
-    $ git pull origin master
-  
 Copyright and license
 ----
 Copyright (c) 2016 yoggy
