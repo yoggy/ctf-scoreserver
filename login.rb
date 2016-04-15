@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'sinatra'
 require 'digest/sha1'
 
@@ -8,7 +7,7 @@ helpers do
   end
 
   def is_login
-    !(session['uid'].nil? || session['uid'] == "" || User.find_by_id(session['uid']).nil?)
+    !(session['uid'].nil? || session['uid'] == "" || User.find(session['uid']).nil?)
   end
 
   def login_block
@@ -24,7 +23,7 @@ helpers do
   end
 
   def get_name
-    u = User.find_by_id(get_uid)
+    u = User.find(get_uid)
     return "" until u
 
     u.name
@@ -48,7 +47,7 @@ post '/login' do
     redirect '/'
   end
 
-  u = User.find_by_email(email, :first)
+  u = User.where(email: email).first
   if u != nil
     if Digest::SHA1.hexdigest(password) == u.password
       session['uid'] = u.id

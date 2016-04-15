@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'sinatra'
 require 'time'
 
@@ -7,7 +6,7 @@ require 'time'
 #
 get '/ranking' do
   login_block do
-    us = User.find(:all)
+    us = User.all
     us = us.inject([]) {|r, u| u.total_score > 0 ? r + [u] : r}
 
     us.sort! {|a, b| 
